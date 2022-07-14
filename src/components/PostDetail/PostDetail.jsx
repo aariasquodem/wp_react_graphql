@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {gql, useQuery} from '@apollo/client';
 
 const id = window.location.href.split('=')[1];
 const POST_DETAIL = gql`
-query PostById($id: ID = "${id}") {
+query PostById($id: ID) {
   post(id: $id) {
     author {
       node {
@@ -35,6 +35,9 @@ query PostById($id: ID = "${id}") {
 }`
 
 const PostDetail = () => {
+  // const id = window.location.href.split('=')[1];
+  // console.log(`"${id}"`)
+  const [post, setPost] = useState({})
   const {data, loading, error} = useQuery(POST_DETAIL);
 
   if(error) return <h2>Error: {error.message}</h2>
@@ -44,7 +47,12 @@ const PostDetail = () => {
   return <>
           {loading
             ? <h2>Loading...</h2>
-            : <div><h2>Lo tenemos</h2></div>
+            : <div>
+                <h2>{data.post.title}</h2>
+                <h5>{data.post.author.node.name}</h5>
+                <img src={data.post.featuredImage.node.mediaItemUrl} alt={data.post.featuredImage.node.altText} />
+                <p>{data.post.content.replace( /(<([^>]+)>)/ig, '')}</p>
+              </div>
             }
         </>
 };

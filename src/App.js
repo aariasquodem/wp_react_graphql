@@ -9,7 +9,8 @@ const client = new ApolloClient({
     link: new HttpLink({
       uri: 'http://gatsby.local/graphql'
     })
-})
+});
+
 
 function App() {
   return (
