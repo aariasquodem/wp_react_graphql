@@ -3,7 +3,7 @@ import {gql, useQuery} from '@apollo/client';
 
 const id = window.location.href.split('=')[1];
 const POST_DETAIL = gql`
-query PostById($id: ID) {
+query PostById($id: ID = "${id}") {
   post(id: $id) {
     author {
       node {
