@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
+import Main from './components/Main';
 import './App.css';
+
+const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    link: new HttpLink({
+      uri: 'http://gatsby.local/graphql'
+    })
+})
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <Main/>
+        </ApolloProvider> 
+      </BrowserRouter>
     </div>
   );
 }
