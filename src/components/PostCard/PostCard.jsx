@@ -2,11 +2,11 @@ import React from "react";
 import {Link} from 'react-router-dom';
 
 const PostCard = ({post}) => {
-  return <div>
-    <Link to={`/post/?id=${post.id}`} target="_blank"><h3>{post.title}</h3></Link>
-    <p>{post.excerpt.replace( /(<([^>]+)>)/ig, '').slice(0, -11)}[&hellip;]</p>
-    <p>{post.author.node.name}</p>
-    <img src={post.featuredImage.node.mediaItemUrl} alt="" />
+  return <div className="post-card">
+    <Link to={`/post/?id=${post.id}`} target="_blank"><h3 className="title">{post.title}</h3></Link>
+    <p className="excerpt">{post.excerpt.replace( /(<([^>]+)>)/ig, '').slice(0, -11)}[&hellip;]</p>
+    <p className="author"><b>Author:</b><Link to={`/author/?author=${post.author.node.slug}`}> {post.author.node.name}</Link></p>
+    <img src={post.featuredImage.node.mediaItemUrl} alt="" className="featured-image"/>
   </div>;
 };
 

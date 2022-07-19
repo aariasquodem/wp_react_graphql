@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {gql, useQuery} from '@apollo/client';
+import {CircleLoader} from 'react-spinners';
 
 const id = window.location.href.split('=')[1];
 const POST_DETAIL = gql`
@@ -46,8 +47,8 @@ const PostDetail = () => {
 
   return <>
           {loading
-            ? <h2>Loading...</h2>
-            : <div>
+            ? <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
+            : <div className="article-body">
                 <h2>{data.post.title}</h2>
                 <h5>{data.post.author.node.name}</h5>
                 <img src={data.post.featuredImage.node.mediaItemUrl} alt={data.post.featuredImage.node.altText} />

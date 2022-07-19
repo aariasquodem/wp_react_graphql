@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ApolloClient, HttpLink, InMemoryCache, ApolloProvider } from '@apollo/client';
 import Main from './components/Main';
-import './App.css';
+import Header from './components/Header';
+import './styles/styles.scss';
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <ApolloProvider client={client}>
+          <Header/>
           <Main/>
         </ApolloProvider> 
       </BrowserRouter>

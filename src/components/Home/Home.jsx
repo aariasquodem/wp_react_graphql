@@ -1,5 +1,6 @@
 import React from "react";
 import {gql, useQuery} from '@apollo/client';
+import {CircleLoader} from 'react-spinners';
 import PostCard from '../PostCard';
 
 const ALL_POSTS = gql`
@@ -12,6 +13,7 @@ query AllPosts {
           slug
           id
           username
+          uri
         }
       }
       id
@@ -23,6 +25,7 @@ query AllPosts {
           altText
         }
       }
+      uri
     }
   }
 }
@@ -40,7 +43,7 @@ const Home = () => {
 
   return <>
           {loading
-            ? <h2>Loading...</h2>
+            ? <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
             : <div>{paintCards()}</div>
             }
         </>
