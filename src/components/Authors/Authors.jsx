@@ -31,8 +31,6 @@ const Author = () => {
           ? <div className="spinner"><CircleLoader speedMultiplier={0.5} color={'#00857a'}  size={100}/></div>
           : <div>{paintCards()}</div>}
         </>
-
-  return <div>Author</div>;
 };
 
 export default Author;
